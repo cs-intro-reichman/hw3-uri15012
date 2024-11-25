@@ -33,7 +33,7 @@ public class Algebra {
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		for (int i = 0; i<x2; i--){ 
+		for (int i = 0; i<x2; i++){ 
 			x1--;
 		}
 		return x1;
@@ -78,7 +78,7 @@ public class Algebra {
 		int quotient = div(x1,x2); // get the integer 
 		int remainder = minus(x1,times(x2,quotient)); // x1-(quotient*b)
 
-		return remainder;
+		return remainder ;
 	}	
 
 	// Returns the integer part of sqrt(x) 
@@ -86,10 +86,10 @@ public class Algebra {
 		if (x < 0) {
 			throw new ArithmeticException("Square root of negative numbers is not defined for integers.");
 		}
-		int i = 1;
-		while (pow(i,2)<=x){
-			i++;
+		int result = 0;
+		while (times (result,result)<=x){
+			result ++;
 		}
-		return i=1;
-	}	  	  
-}
+		return minus (result,1);
+	}
+}	  	  
