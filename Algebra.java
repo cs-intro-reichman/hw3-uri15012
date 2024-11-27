@@ -46,20 +46,44 @@ public class Algebra {
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		for (int i = 0; i<x2; i++){ 
-			x1--;
+		if(x2 > 0)
+	{		
+		for (int i = 0;i < x2; i++){ // to run exaclty the number of times of b
+			x1--; // adds 1 to a by the end of the loop a has been incremented b times
 		}
 		return x1;
+	}
+	else {
+		if (x2 < 0)
+		{
+				for (int i = 0;i <Math.abs(x2) ; i++){ // to run exaclty the number of times of b
+					x1++; // adds 1 to a by the end of the loop a has been decremented b times	
+			}
+			return x1;
+		}
+		return x1;
+		}		
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		int result = x1; // I start with the first value and add x2-1 because I started with the first 
-		for (int i = 0; i<x2-1; i++){
-			result = result + x1;
+		if (x2 > 0){
+			for (int i = 0;i < x2; i++){
+				x1= plus(x1,x1);
 		}
-		return result;
+		return x1;
 	}
+		else {
+			if (x2<0){
+				for (int i = 0;i<Math.abs(x2);i++){
+					x1 = plus(x1,x1);
+				}
+				return minus(0,x1);
+			}
+			return 0;
+		}
+	}
+		
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x1, int x2) {
