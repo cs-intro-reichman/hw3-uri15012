@@ -79,7 +79,7 @@ public class Algebra {
 			}
 		}
 			 else { // se um deles for negativo
-				for (int i = 0; i<MyAbs(x2); i++){
+				for (int i = 0; i<MyAbs(x2); i++){ // 3x4 eh o numero 3 somado 4 vezes 
 					temp = minus(temp,MyAbs(x1));
 				}
 			
@@ -89,22 +89,22 @@ public class Algebra {
 	
 
 	// Returns x^n (for n >= 0)
-	public static int pow(int x, int n) {
-		int pow = 0;
+	public static int pow(int x, int n) { // rever 
+		int pow = 1;
 		if (x==0)return 0;
 		if (n==0)return 1;
 		if (n==1)return x;
-		if (x>0 || x<0 && mod (n, 2) == 0){
+		if (x>0 || x<0 && mod (n, 2) == 0){//עם הבסיס חיובי או שהחזקה חיובית אז המספר יהיה חיובי
 			if (x<0){
-				x = MyAbs(x);
+				x = MyAbs(x); 
 			}
-			for (int i = 1; i<n;i++){
+			for (int i = 0; i<n;i++){
 				pow = times (pow,x);
 			}
 		}else 
 		{
-			for (int i =1;i<n;i++){
-				pow = times(pow,MyAbs (x));
+			for (int i = 0;i<n;i++){
+				pow = times(pow, MyAbs (x));
 
 			}
 		}
@@ -116,38 +116,40 @@ public class Algebra {
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2)
 	{
-		if (x2==0) {
-			throw new ArithmeticException("Division by zero not allowed");
+	int num = 0; 
+	int counter = 0;
+	int x = MyAbs(x1);
+	int y = MyAbs(x2);
+	
+	if (x1 == 0) return 0;
+	while (num <= x){ // rever essa parte 
+		num = plus (num,y);
+		if (minus (x, num)>=0);
+		{
+			if (x1>0 && x2>0 || x1<0 && x2<0){
+				counter ++;
+
+			}
+			else counter--;
+
 		}
-		int result = 0;
-		while (x1>=x2){
-			x1 = minus(x1,x2);
-			result ++;
-		}
-		return result;
+	}
+	return counter++;
 }
 
 	// Returns x1 % x2
-	public static int mod(int x1, int x2) {
-		
-		
-		
-		if (x2==0) {
-			throw new ArithmeticException("Division by zero not allowed");
-		}
-		int quotient = div(x1,x2); // get the integer 
-		int remainder = minus(x1,times(x2,quotient)); // x1-(quotient*b)
-
-		return remainder ;
+	public static int mod (int x1, int x2) { // rever
+		int num = div (x1,x2);
+		x1 = minus (x1,times(x2,num));
+		return x1;
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		int result = 0;
 		if (x < 0) {
 			throw new ArithmeticException("Square root of negative numbers is not defined for integers.");
 		}
-		result = 0;
+		int result = 0;
 		while (times (result,result)<=x){
 			result ++;
 		}
