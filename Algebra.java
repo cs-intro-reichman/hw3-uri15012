@@ -90,20 +90,19 @@ public class Algebra {
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) { // rever 
-		int pow = 1;
+		int pow = x;
 		if (x==0)return 0;
 		if (n==0)return 1;
-		if (n==1)return x;
 		if (x>0 || x<0 && mod (n, 2) == 0){//עם הבסיס חיובי או שהחזקה חיובית אז המספר יהיה חיובי
 			if (x<0){
 				x = MyAbs(x); 
 			}
-			for (int i = 0; i<n;i++){
+			for (int i = 1; i<n;i++){
 				pow = times (pow,x);
 			}
 		}else 
 		{
-			for (int i = 0;i<n;i++){
+			for (int i = 1;i<n;i++){
 				pow = times(pow, MyAbs (x));
 
 			}
@@ -134,7 +133,7 @@ public class Algebra {
 
 		}
 	}
-	return counter++;
+	return counter;
 }
 
 	// Returns x1 % x2
