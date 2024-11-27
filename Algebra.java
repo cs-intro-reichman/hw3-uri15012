@@ -109,6 +109,9 @@ public class Algebra {
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
+		
+		
+		
 		if (x2==0) {
 			throw new ArithmeticException("Division by zero not allowed");
 		}
