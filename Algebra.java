@@ -25,10 +25,23 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
+	if(x2 > 0)
+	{		
 		for (int i = 0;i < x2; i++){ // to run exaclty the number of times of b
 			x1++; // adds 1 to a by the end of the loop a has been incremented b times
 		}
 		return x1;
+	}
+	else {
+		if (x2 < 0)
+		{
+				for (int i = 0;i <Math.abs(x2) ; i++){ // to run exaclty the number of times of b
+					x1--; // subtracts 1 to a by the end of the loop a has been decremented b times	
+			}
+			return x1;
+		}
+		return x1;
+		}		
 	}
 
 	// Returns x1 - x2
