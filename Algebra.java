@@ -8,6 +8,7 @@ public class Algebra {
 	    // Tests some of the operations
 	    System.out.println("times fund:");
 		System.out.println(times(3,4));
+		System.out.println(div(10,2));
 		
 	}  
 	public static int MyAbs(int x1) {
@@ -30,24 +31,17 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-	if(x2 > 0)
-	{		
-		for (int i = 0;i < x2; i++){ // to run exaclty the number of times of b
+		
+		for (int i = 0;i < MyAbs (x2); i++)
+		{ 
+			if (x2<0){
+				x1--;
+			}else 
 			x1++; // adds 1 to a by the end of the loop a has been incremented b times
 		}
 		return x1;
 	}
-	else {
-		if (x2 < 0)
-		{
-				for (int i = 0;i <MyAbs(x2) ; i++){ // to run exaclty the number of times of b
-					x1--; // subtracts 1 to a by the end of the loop a has been decremented b times	
-			}
-			return x1;
-		}
-		return x1;
-		}		
-	}
+	
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
@@ -97,7 +91,7 @@ public class Algebra {
 			if (x<0){
 				x = MyAbs(x); 
 			}
-			for (int i = 1; i<n;i++){
+			for (int i = 1; i<n;i++){// rever
 				pow = times (pow,x);
 			}
 		}else 
