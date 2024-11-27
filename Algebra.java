@@ -6,22 +6,27 @@
 public class Algebra {
 	public static void main(String args[]) {
 	    // Tests some of the operations
-	    System.out.println(plus(2,3));   // 2 + 3
-	    System.out.println(minus(7,2));  // 7 - 2
-   		System.out.println(minus(2,7));  // 2 - 7
- 		System.out.println(times(3,4));  // 3 * 4
-   		System.out.println(plus(2,times(4,2)));  // 2 + 4 * 2
-   		System.out.println(pow(5,3));      // 5^3
-   		System.out.println(pow(3,5));      // 3^5
-   		System.out.println(div(12,3));   // 12 / 3    
-   		System.out.println(div(5,5));    // 5 / 5  
-   		System.out.println(div(25,7));   // 25 / 7
-   		System.out.println(mod(25,7));   // 25 % 7
-   		System.out.println(mod(120,6));  // 120 % 6    
-   		System.out.println(sqrt(36));
-		System.out.println(sqrt(263169));
-   		System.out.println(sqrt(76123));
+	    System.out.println("times fund:");
+		System.out.println(times(3,4));
+		
 	}  
+	public static int MyAbs(int x1) {
+		
+		int positive = 0;
+		if (x1>=0){
+		return x1;
+		} 
+		else {
+			for (int i = x1;i < 0; i++){
+				positive++;
+			}
+			return positive;
+		
+		}
+		
+	}
+		
+		
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
@@ -35,7 +40,7 @@ public class Algebra {
 	else {
 		if (x2 < 0)
 		{
-				for (int i = 0;i <Math.abs(x2) ; i++){ // to run exaclty the number of times of b
+				for (int i = 0;i <MyAbs(x2) ; i++){ // to run exaclty the number of times of b
 					x1--; // subtracts 1 to a by the end of the loop a has been decremented b times	
 			}
 			return x1;
@@ -56,7 +61,7 @@ public class Algebra {
 	else {
 		if (x2 < 0)
 		{
-				for (int i = 0;i <Math.abs(x2) ; i++){ // to run exaclty the number of times of b
+				for (int i = 0;i <MyAbs(x2) ; i++){ // to run exaclty the number of times of b
 					x1++; // adds 1 to a by the end of the loop a has been decremented b times	
 			}
 			return x1;
@@ -66,36 +71,51 @@ public class Algebra {
 	}
 
 	// Returns x1 * x2
-	public static int times(int x1, int x2) {
-		if (x2 > 0){
-			for (int i = 0;i < x2; i++){
-				x1= plus(x1,x1);
-		}
-		return x1;
-	}
-		else {
-			if (x2<0){
-				for (int i = 0;i<Math.abs(x2);i++){
-					x1 = plus(x1,x1);
-				}
-				return minus(0,x1);
+	public static int times(int x1, int x2){
+		int temp = 0;
+		if ((x1>0 && x2>0) || (x1<0 && x2<0)){ // se o numero for todo positivo ou todo negativo
+			for (int i = 0; i < MyAbs(x2);i++){
+				temp = plus(temp,MyAbs(x1));
 			}
-			return 0;
 		}
-	}
-		
+			 else { // se um deles for negativo
+				for (int i = 0; i<MyAbs(x2); i++){
+					temp = minus(temp,MyAbs(x1));
+				}
+			
+			}
+			return temp;
+		}
+	
 
 	// Returns x^n (for n >= 0)
-	public static int pow(int x1, int x2) {
-		int result = 1;// remember not starting with 0 because multiplication for 1 doesn't change
-		for (int i = 0; i<x2;i++){ // it will hapen be times because the i=0
-			result = times(result,x1);
+	public static int pow(int x, int n) {
+		int pow = 0;
+		if (x==0)return 0;
+		if (n==0)return 1;
+		if (n==1)return x;
+		if (x>0 || x<0 && mod (n, 2) == 0){
+			if (x<0){
+				x = MyAbs(x);
+			}
+			for (int i = 1; i<n;i++){
+				pow = times (pow,x);
+			}
+		}else 
+		{
+			for (int i =1;i<n;i++){
+				pow = times(pow,MyAbs (x));
+
+			}
 		}
-		return result;
-	}
+		
+	return pow;
+
+}
 
 	// Returns the integer part of x1 / x2 
-	public static int div(int x1, int x2) {
+	public static int div(int x1, int x2)
+	{
 		if (x2==0) {
 			throw new ArithmeticException("Division by zero not allowed");
 		}
@@ -105,7 +125,7 @@ public class Algebra {
 			result ++;
 		}
 		return result;
-	}
+}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
@@ -123,13 +143,15 @@ public class Algebra {
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
+		int result = 0;
 		if (x < 0) {
 			throw new ArithmeticException("Square root of negative numbers is not defined for integers.");
 		}
-		int result = 0;
+		result = 0;
 		while (times (result,result)<=x){
 			result ++;
 		}
 		return minus (result,1);
 	}
+	
 }	  	  
