@@ -25,7 +25,7 @@ public class TestAnagram {
         System.out.println("Test 2 (different lengths): " + (test2 ? "PASS" : "FAIL"));
         
         // Test case 4: Empty strings
-        boolean test4 = Anagram.isAnagram("", "");
+        boolean test4 = Anagram.isAnagram("", ""); 
         System.out.println("Test 4 (empty strings): " + (test4 ? "PASS" : "FAIL"));
         
         // Test case 5: Complex anagram with spaces

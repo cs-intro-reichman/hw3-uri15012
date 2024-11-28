@@ -71,13 +71,13 @@ public class Anagram {
 
 		for (int i = 0; i < str.length(); i++) { // loop trhough each character pq eh de zero ate length nao precisa de -1 
 			char ch = str.charAt(i); // char data type for a single character and ch variable
-			if ((ch >= 'A' && ch <= 'Z')|| (ch == ' ')){ // A = 65 and z=90  quando compara ==
+			if ((ch >= 'A' && ch <= 'Z')){ // A = 65 and z=90  quando compara ==
 				ch = (char) (ch + 32);
 				
 				answer = answer + ch;
 				
 				 // as minusculas se adiciona 32 nao vai ta nem definida eu n quero modificar o 32
-			} else if (ch >='a' && ch <= 'z'){
+			} else if (ch >='a' && ch <= 'z'|| (ch == ' ')){
 					answer = answer + ch;
 				}
 					
