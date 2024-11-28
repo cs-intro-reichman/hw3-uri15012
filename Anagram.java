@@ -34,7 +34,7 @@ public class Anagram {
 		int [] nCharCounter1 = new int [27]; 
 		int [] nCharCounter2 = new int [27];
 
-		for (int i = 0; i < str1.length; i++) {
+		for (int i = 0; i < str1.length(); i++) { // funcao length nao pede variavel
 			if (str1.charAt (i) == ' '){
 				nCharCounter1 [26]++;
 			}else{
@@ -43,8 +43,8 @@ public class Anagram {
 			}
 			}
 
-			for (int i = 0; i < str2.Length(); i++) {
-				if (str2.CharAt (i) == ' '){
+			for (int i = 0; i < str2.length(); i++) {
+				if (str2.charAt (i) == ' '){
 					nCharCounter2 [26]++;
 				} else{
 					nCharCounter2 [ str2.charAt (i) - 'a']++;
