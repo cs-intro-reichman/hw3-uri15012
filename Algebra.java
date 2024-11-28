@@ -60,7 +60,7 @@ public class Algebra {
 			}
 			return x1;
 		}
-		return x1;
+		return x1;// if x1 = 0
 		}		
 	}
 

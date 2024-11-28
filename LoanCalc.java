@@ -82,18 +82,20 @@ public class LoanCalc {
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
 		iterationCounter = 0;
-        double lo = loan / n;
-        double hi = loan;
+        double lo = loan / n; // start with a guess that is too small to cover interest we don't count for the interesting yet
+        double hi = loan; // high payment that overpays the loan resulting in a negative balance it is higher than what is needed to pay leaving a negative balance 
+		// the negative result comes from evaluating the ending balance (endbalance), not hi itself.
         double mid;
 
-        while (hi - lo > epsilon) {
+        while (hi - lo > epsilon) { // we use while because we don't know till when is going to iterate, 
+		// it ensures it's going to narrowing down until the interval becomes smaller than the desired precision (epsilon) 
             mid = (lo + hi) / 2;
             double balance = endBalance(loan, rate, n, mid);
-            if (balance > epsilon) {
-                lo = mid;
-            } else if (balance < -epsilon) {
+            if (balance > epsilon) { // positive balance says that the current payment is too low and it hasn't paid off the entire loan 
+                lo = mid; // it eliminates half of the serach range where the solution cannot exist and it means that the lo is small it has to be bigger you need to pay more 
+            } else if (balance < -epsilon) { // ensure that it is negative with the - before the negative 
                 hi = mid;
-            } else {
+            } else { // that means that it's close enough to zero it is already a good enough solution 
                 return mid;
             }
             iterationCounter++;
@@ -103,12 +105,15 @@ public class LoanCalc {
 }
 
 		
-		
-		
-		
-		
-		
-		
+		// the brute force is a trial an error solution approach that systematically tests possible solutions 
+		// disadvantages of the bruteforce is that it takes many iteractions to converge especially if the solution is far from the starting point 
+		// smaller epsilon gives more accurate results but increases the number of iteractions sinificantly
+
+		// bisection - start with two initial bounds L, low guess and H high guess. L f(L)>0 when payment is too low, balance is positive
+		// f(H)<0 payment is too high balance is negative . g is calculated as the midpoint of the current bounds (L+H)/2 
+		// g it is the current guess for the correct value of the periodic payment that will make the loan ending balance f(g) = 0.
+		// the g lies like if f(g)>0 is too low, f(g)<0 is too high and f(g)≈0 is the correct payment 
+		// each iteraction the range L,H shrinks and g becomes more accurate estimate of the correct payment 
 		
 		
 		
